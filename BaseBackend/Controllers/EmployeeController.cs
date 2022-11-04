@@ -77,8 +77,8 @@ namespace BaseBackend.Controllers
         }
 
 
-        [Route("SaveFile")]
         [HttpPost]
+        [Route("SaveFile")]
         public JsonResult SaveFile()
         {
             try

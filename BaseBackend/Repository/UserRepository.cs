@@ -13,6 +13,7 @@ namespace BaseBackend.Repository
     public interface IUserRepository
     {
         User Authenticate(User user);
+        bool UpdatePicture(User user);
     }
 
     public class UserRepository : IUserRepository
@@ -46,6 +47,18 @@ namespace BaseBackend.Repository
             userObj.Password = null;
 
             return userObj;
+        }
+
+        public bool UpdatePicture(User user)
+        {
+            var userObj = _appDBContext.Users.Find(user.ID);
+            if (userObj == null)
+                return false;
+
+            userObj.PhotoFileName = user.PhotoFileName;
+            _appDBContext.SaveChanges();
+
+            return true;
         }
 
     }
